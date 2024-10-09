@@ -1,15 +1,19 @@
-import { Controller, Get, Render } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Post, Body, ValidationPipe, HttpException   } from '@nestjs/common';
 
-@Controller()
+
+
+@Controller('payment')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
 
-  @Get()
+  /*@Get()
   @Render('index')
   getHello() {
     return {
       message: this.appService.getHello()
     };
-  }
+  } 
+*/
 }
+
+
+
