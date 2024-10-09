@@ -1,13 +1,18 @@
-import { Controller, Post, Body, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, ValidationPipe, Render } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 import * as csv from 'csv-writer';
+import { error } from 'console';
 
-@Controller('payment')
+@Controller()
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
-  @Post()
-  async submitPayment(@Body(ValidationPipe) paymentData: any) {
+  @Get('payment')
+  @Render('payment')
+  submitPayment1() { return {error : []}}
+
+  @Post('payment')
+  submitPayment(@Body(ValidationPipe) paymentData: any) {
     const { name, bankAccountNumber, termsAndConditions } = paymentData;
 
     // Validate payment data
